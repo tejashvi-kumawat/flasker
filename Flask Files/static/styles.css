@@ -1,0 +1,173 @@
+* {
+margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to right, rgb(0, 85, 50), rgb(14, 167, 98));
+    color: #333;
+    padding: 30px;
+    
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #37ffc3;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#title {
+    font-size: 1.8rem;
+    overflow: hidden;
+    word-wrap: break-word;
+    flex-grow: 1;
+    animation: type-effect 3s steps(30, end) 1;
+    white-space: normal;
+}
+
+.user-info {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.sign-out-btn {
+    padding: 5px 10px;
+    border: none;
+    background: #ff4c4c;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sign-out-btn:hover {
+    background-color: #d43f3f;
+}
+
+.intro-section {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.points-section {
+    margin: 20px 0;
+    font-size: 1.1rem;
+}
+
+.leaderboard-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.leaderboard-btn:hover {
+    background-color: #0056b3;
+}
+
+.tasks-section {
+    margin-top: 30px;
+}
+
+.tasks-section h2 {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.task-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.task-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.task-btn:hover {
+    background-color: #0056b3;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cards-hidden {
+    display: none;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@keyframes type-effect {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .task-btn {
+        padding: 8px 16px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    #title {
+        font-size: 1.4rem;
+        white-space: normal;
+        animation: type-effect 4s steps(30, end) 1;
+        font-family: 'Verdana', sans-serif;
+    }
+
+    .user-info {
+        font-size: 0.8rem;
+        flex-shrink: 1;
+    }
+}

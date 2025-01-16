@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission Example</title>
+  <style>
+    /* Basic styling for the form */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    form {
+      max-width: 300px;
+      margin: auto;
+    }
+
+    input[type="text"], input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .message {
+      color: green;
+      font-size: 14px;
+    }
+
+    .disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Submit Your Details</h2>
+
+  <!-- Form starts here -->
+  <form id="userForm" action="/submit" method="post">
+    <label for="username">Name:</label>
+    <input type="text" id="username" name="username" required>
+
+    <input type="submit" id="submitButton" value="Submit">
+    
+    <!-- Message to display after form submission -->
+    <p id="message" class="message" style="display: none;">Form is being processed...</p>
+  </form>
+
+  <script>
+    // Get references to form and submit button
+    const form = document.getElementById('userForm');
+    const submitButton = document.getElementById('submitButton');
+    const message = document.getElementById('message');
+
+    // Add event listener for form submission
+    form.addEventListener('submit', function(event) {
+      // Disable the submit button
+      submitButton.disabled = true;
+      submitButton.classList.add('disabled');
+      submitButton.value = 'Submitting...';
+
+      // Show a message indicating the form is being processed
+      message.style.display = 'block';
+
+      // Optional: Prevent form submission if you want to simulate a delay
+      // event.preventDefault();  // Remove this to actually submit the form
+    });
+  </script>
+
+</body>
+</html>

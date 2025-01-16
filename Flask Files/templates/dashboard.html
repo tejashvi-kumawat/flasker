@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eDC Campus Ambassador Program</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="title"></h1>
+            
+            <div class="user-info">
+                Hey, {{name | capitalize}}
+                <button class="sign-out-btn">Sign out</button>
+            </div>
+        </header>
+        <section class="intro-section">
+            <p>Welcome to the Campus Ambassador Dashboard! You can submit tasks and track your points here.</p>
+            <div class="points-section">
+                <p>Your Points: <span id="points">0</span> &nbsp; Your Position: 1</p>
+            </div>
+            <button class="leaderboard-btn">View Leaderboard</button>
+        </section>
+        <section class="tasks-section">
+            <h2>Tasks</h2>
+            <div class="task-buttons">
+                <button id="pending-btn" class="task-btn">Pending Tasks</button>
+                <button id="completed-btn" class="task-btn">Completed Tasks</button>
+            </div>
+            <div id="cards-container" class="cards-container cards-hidden"></div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

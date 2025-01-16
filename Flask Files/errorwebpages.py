@@ -17,9 +17,6 @@ def pageNotFound(e):
 
 #Internal server error
 
-@app.route('/trigger500')
-def trigger500():
-    raise Exception("This is a test for 500 error.")
 @app.errorhandler(500)
 def serverError(e):
     return render_template("500.html"), 500

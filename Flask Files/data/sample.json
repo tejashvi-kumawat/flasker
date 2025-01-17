@@ -1,24 +1,25 @@
 {
     "users": [
         {
-            "username": "TEJASHVI",
-            "Name": "TEJASHVI kumawat",
-            "ID": "1981729871239471"
+            "username": "tejashvi",
+            "Name": "tejshvi",
+            "ID": "1",
+            "qr_string": "F00NuazKFvNJ7ARXiyBTIpYo7v1TGd4M",
+            "verified": false
         },
         {
-            "username": "afskjh",
-            "Name": "asdfkj",
-            "ID": "1981729871239472"
+            "username": "a",
+            "Name": "a",
+            "ID": "2",
+            "qr_string": "UECPkhkq0TS8K0KFRtIQXiauYqX56NHQ",
+            "verified":false
         },
         {
-            "username": "Purushottam",
-            "Name": "Purushottam Daffier",
-            "ID": "1981729871239473"
-        },
-        {
-            "username": "Owly",
-            "Name": "Owly",
-            "ID": "1981729871239474"
+            "username": "puru",
+            "Name": "puru",
+            "ID": "3",
+            "qr_string": "QPFoaJS3b9tM3StID7bUGWuxumc7dlMR",
+            "verified":false
         }
     ]
 }

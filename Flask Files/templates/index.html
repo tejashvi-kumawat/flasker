@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Verification</title>
+</head>
+<body>
+    <h1>QR Code Verification</h1>
+    <p>Scan a QR code to verify!</p>
+    
+    <!-- Video element to show the camera feed from the client's device -->
+    <video id="videoElement" width="640" height="480" autoplay></video>
+    
+    <!-- Capture button to stop the camera feed and capture an image -->
+    <button id="stopButton">Stop & Verify</button>
+
+    <p id="message"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    
+    <script>
+        let stream;
+        let video = document.getElementById('videoElement');
+        let stopButton = document.getElementById('stopButton');
+        let messageElement = document.getElementById('message');
+
+        // Accessing the camera from the client's browser (remote device)
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(function (error) {
+            console.log("Error accessing the camera: ", error);
+            messageElement.textContent = "Error accessing the camera.";
+        });
+
+        stopButton.addEventListener('click', function () {
+            // Stop the video stream and capture the image
+            captureImage();
+        });
+
+        function captureImage() {
+            // Create a canvas to capture the image from the video feed
+            let canvas = document.createElement("canvas");
+            let context = canvas.getContext("2d");
+
+            // Set the canvas dimensions to match the video dimensions
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Draw the current video frame onto the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Get the image data
+            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            // Try to detect the QR code using jsQR
+            let code = jsQR(imageData.data, canvas.width, canvas.height);
+
+            if (code) {
+                console.log("QR Code detected: ", code.data);
+                // Send the QR code data to Flask for verification (via AJAX, for example)
+                verifyQRCode(code.data);
+            } else {
+                console.log("No QR Code detected.");
+                messageElement.textContent = "No QR Code detected. Please try again.";
+            }
+        }
+
+        function verifyQRCode(qrData) {
+            // Simulate sending the QR data to your Flask backend for verification
+            fetch('/verify_qr', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ qr_string: qrData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'verified') {
+                    messageElement.textContent = 'QR Code Verification Successful!';
+                } else if (data.status === 'already_verified') {
+                    messageElement.textContent = 'QR Code is already verified!';
+                } else {
+                    messageElement.textContent = 'QR Code not found or invalid.';
+                }
+            })
+            .catch(error => {
+                console.log("Error verifying QR Code: ", error);
+                messageElement.textContent = 'Error verifying QR Code.';
+            });
+        }
+    </script>
+</body>
+</html>

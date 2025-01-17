@@ -1,0 +1,42 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+</head>
+<body>
+
+    {% include 'base.html'%}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <center>
+        <br><br><br>
+        <h1>Login</h1>
+    
+        <form action="{{ url_for('verify') }}" method="post" >
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required style="height: 1.5rem; width:10%; margin:1rem;">
+            <input type="submit" value="Login" style="height: 1.76rem;">
+        </form>
+        
+    </center>
+    <form action="/update-json" method="POST" style="display: flex; flex-direction:column; justify-content:center; gap:0.2 rem; max-width: 50%; align-items:center; margin:auto;">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <button type="submit">Update User</button>
+    </form>
+
+
+</body>
+</html>

@@ -1,1 +1,7 @@
-
+flask
+PIL
+qrcode
+random
+string
+json
+qr_generator
